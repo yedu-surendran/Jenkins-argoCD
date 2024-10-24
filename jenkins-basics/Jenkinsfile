@@ -2,32 +2,42 @@ pipeline {
     agent any
 
     stages {
-
-
-        stage('Setup') {
+        stage('Install and Start HTTPD Server') {
             steps {
-
-                sh "pip install -r requirements.txt"
-            
+                // Update system, install HTTPD (Apache) server, and start the service
+                sh '''
+                sudo apt-get update -y
+                sudo apt-get install apache2 -y
+                sudo systemctl start apache2
+                sudo systemctl enable apache2
+                '''
             }
         }
-        stage('Test') {
+        stage('Check HTTPD Server Status') {
             steps {
-                sh "pytest"
-                
+                // Check if the HTTPD (Apache) server is running
+                sh '''
+                if systemctl is-active --quiet apache2; then
+                    echo "HTTPD server is running."
+                else
+                    echo "HTTPD server is NOT running!"
+                    exit 1
+                fi
+                '''
             }
-        }    
-        stage('Deployment') {
-            input {
-                message "Do you want to proceed further?"
-                ok "Yes"
-            }
+        }
+        stage('Website is Live') {
             steps {
-                echo "Running Deployment"
-                
+                // Display a message indicating the website is live
+                echo "Your website is live now!"
             }
-        } 
-        
-            
+        }
+    }
+
+    post {
+        always {
+            // Optional: Cleanup or any post-build actions can be added here
+            echo 'Pipeline execution completed.'
+        }
     }
 }
