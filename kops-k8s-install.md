@@ -374,14 +374,41 @@ Get information about the Kubernetes nodes in the cluster
 ```
 kubectl get nodes
 ```
-To scale out the node, execute the below command. Replace the `nodes-us-east-2a.mehar-2024-03-19-16-03.k8s.local` with the auto-scaling group (master or worker) in your case and also replace `region` with your region. MAke sure the Max capacity of the Auto Scaling Group is above or equal to the number you are trying to scale to.
-```
-aws autoscaling update-auto-scaling-group --auto-scaling-group-name nodes-us-east-2a.mehar-2024-03-19-16-03.k8s.local --desired-capacity 3 --region us-east-2
-```
 Run the below command if you are not able to retrieve the data. The below command comes in handy if you have downscaled your cluster and have scaled it up again. 
 ```
 kops export kubeconfig --admin
 ```
+
+You can install ArgoCD using the official manifest files provided by the ArgoCD team.
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+To check if ArgoCD is running correctly, use the following command:
+```
+kubectl get pods -n argocd
+```
+
+Modify the tyoe of clusterIP service to NodePort to access the argocd
+
+```
+kubectl edit svc argocd-server -n argocd
+```
+
+Run the following command to get the nodeport
+
+```
+kubectl get svc -n argocd
+```
+
+Open your browser and go to `https://localhost:8080` or http://<public-ip>:<nodeport>
+
+The default username is admin, and to retrieve the password, use:
+```
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.password} | base64 -d
+```
+
 
 ### To delete the cluster
 ```
