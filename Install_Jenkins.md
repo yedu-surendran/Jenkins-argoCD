@@ -22,7 +22,7 @@
     ```
 
 ## Step 3: Install Java
-Jenkins requires Java to run. Install OpenJDK 11 (recommended version for Jenkins):
+Jenkins requires Java to run. Install OpenJDK 17 (recommended version for Jenkins):
 1. Install OpenJDK:
     ```bash
     sudo apt install openjdk-17-jdk -y
