@@ -414,3 +414,14 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.pass
 ```
 kops delete cluster --name <clustername> --state s3://<clustername>
 ```
+
+
+### Command to deploy application on Kubernetes 
+```
+kubectl run web-app --image httpd --port 80
+kubectl get pod
+kubectl api-resources
+vi mypod.yaml
+kubectl apply -f mypod.yaml 
+kubectl get pod
+```
