@@ -65,20 +65,16 @@ After creating the `ninad` user, you can set or update passwords for both the `a
 To change the password for the `admin` user, run the following command:
 
 ```bash
-argocd account update-password --account admin --current-password ZjpgCFwuRfd2TKpU --new-password NewAdminPassword
+argocd account update-password --account admin 
 ```
-
-Replace `NewAdminPassword` with the desired new password for the `admin` account.
 
 #### Set or Update the Password for the Ninad User
 
 Similarly, set a password for the newly created `ninad` user:
 
 ```bash
-argocd account update-password --account ninad --current-password <current-password> --new-password NewNinadPassword
+argocd account update-password --account ninad 
 ```
-
-Replace `<current-password>` with the initial password for `ninad` (if already set) or leave it blank if this is the first time setting it. Replace `NewNinadPassword` with the desired password.
 
 ### Step 5: Create an RBAC Policy for the New User
 
