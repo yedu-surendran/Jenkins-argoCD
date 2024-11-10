@@ -101,7 +101,3 @@ Restart the ArgoCD server to apply the new configuration (optional but recommend
 
 To confirm the setup, try logging in as `ninad` and listing applications in ArgoCD to verify that the `tester` role's permissions are correctly applied.
 
-## Conclusion
-
-By following these steps, you have successfully set up a new user in ArgoCD and assigned specific permissions using RBAC. This ensures that users have only the access they need, enhancing security and control within your ArgoCD environment.
-```
