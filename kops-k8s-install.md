@@ -412,7 +412,7 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.pass
 
 ### To delete the cluster
 ```
-kops delete cluster --name <clustername> --state s3://<clustername>
+kops delete cluster --name <clustername> --state s3://<clustername> --yes
 ```
 
 
