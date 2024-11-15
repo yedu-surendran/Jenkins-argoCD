@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Install and Start HTTPD New Server') {
+        stage('Install and Start HTTPD  Server') {
             steps {
                 // Update system, install HTTPD (Apache) server, and start the service
                 sh '''
